@@ -1,35 +1,44 @@
 import java.util.Scanner;
 
-class Agendar 
+class Agendar
 {
-    public void agendar() 
+    ListarAgenda listarAgenda;
+
+    public Agendar(ListarAgenda listarAgenda)
+    {
+        this.listarAgenda = listarAgenda;
+    }
+
+
+    public void agendar()
     {
         Scanner scanner = new Scanner(System.in);
-        
+
         System.out.print("Digite o nome do paciente: ");
         String nome = scanner.nextLine();
 
-        System.out.print("Digite o dia da semana para agendar (ex:2 = segunda-feira): ");
+        System.out.print("Digite o dia da semana para agendar (2 = segunda-feira): ");
         int dia = scanner.nextInt();
 
-        while (dia < 2 || dia > 5) //verifica se o dia é válido (2 a 5 correspondem a segunda a sexta-feira)
+        while (dia < 2 || dia > 6)
         {
-            System.out.println("Dia inválido. Por favor, escolha um número entre 1 e 5 (Segunda - Sexta).");
-            System.out.print("Digite o dia da semana para agendar (ex:2 = segunda-feira): ");
+            System.out.println("Dia inválido.");
+            System.out.print("Digite um número entre 2 e 6: ");
             dia = scanner.nextInt();
         }
 
-        System.out.print("Digite o horário para agendar (ex: \"8\" para 8:00): ");
+        System.out.print("Digite o horário para agendar (8 a 11): ");
         int horario = scanner.nextInt();
 
-        while (horario < 8 || horario > 11) //verifica se o horário é válido (8 a 11 correspondem a 8:00 a 11:00)
+        while (horario < 8 || horario > 11)
         {
-            System.out.println("Horário inválido. Por favor, escolha um horário entre 8:00 e 11:00.");
-            System.out.print("Digite o horário para agendar (ex: \"8\" para 8:00): ");
+            System.out.println("Horário inválido.");
+            System.out.print("Digite um horário entre 8 e 11: ");
             horario = scanner.nextInt();
         }
 
-        System.out.println("Agendado para: " + dia + " - " + nome + " - " + horario);
+        listarAgenda.adicionar(nome, dia, horario);
 
+        System.out.println("Agendado: " + nome + " - dia " + dia + " às " + horario + ":00");
     }
 }

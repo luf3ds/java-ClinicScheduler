@@ -1,27 +1,53 @@
 class ListarAgenda
 {
-    
-    public void listar()
+    String[][] agenda = new String[5][4];
+
+    String[] dias = 
     {
-        String[][] agenda = 
-        {
-        {"segunda-feira", "8:00", "9:00", "10:00", "11:00"},
-        {"terça-feira", "8:00", "9:00", "10:00", "11:00"},
-        {"quarta-feira", "8:00", "9:00", "10:00", "11:00"},
-        {"quinta-feira", "8:00", "9:00", "10:00", "11:00"},
-        {"sexta-feira", "8:00", "9:00", "10:00", "11:00"}
-        
-};
-        System.out.println("Listando agenda...");
+        "segunda-feira",
+        "terça-feira",
+        "quarta-feira",
+        "quinta-feira",
+        "sexta-feira"
+    };
 
-        for (String[] dia : agenda)
-        {
-            for (String horario : dia)
-            {
-                System.out.println(horario);
-            }
-        }
+    String[] horarios = 
+    {
+        "8:00",
+        "9:00",
+        "10:00",
+        "11:00"
+    };
 
+
+    public void adicionar(String nome, int dia, int horario)
+    {
+        int indexDia = dia - 2;
+        int indexHorario = horario - 8;
+
+        agenda[indexDia][indexHorario] = nome;
     }
 
+
+    public void listar()
+    {
+        System.out.println("Listando agenda...");
+
+        for (int i = 0; i < agenda.length; i++)
+        {
+            System.out.println("\n" + dias[i]);
+
+            for (int j = 0; j < agenda[i].length; j++)
+            {
+                if (agenda[i][j] == null)
+                {
+                    System.out.println(horarios[j] + " - Livre");
+                }
+                else
+                {
+                    System.out.println(horarios[j] + " - " + agenda[i][j]);
+                }
+            }
+        }
+    }
 }
